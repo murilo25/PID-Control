@@ -39,7 +39,7 @@ int main() {
      */
     // Set PID gains
     double k_p = 0.075;
-    double k_i = 0.0001;
+    double k_i = 0.0009;
     double k_d = 0.75;
     pid.Init(k_p, k_i, k_d);
 
