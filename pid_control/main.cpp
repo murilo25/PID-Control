@@ -39,8 +39,8 @@ int main() {
      */
     // Set PID gains
     double k_p = 0.1;
-    double k_i = 0.0001;// 0.0001;
-    double k_d = 1.0;
+    double k_i = 0.005;// 0.0001;
+    double k_d = 4.0;// 1.0;
     pid.Init(k_p, k_i, k_d);
 
     h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char* data, size_t length,
