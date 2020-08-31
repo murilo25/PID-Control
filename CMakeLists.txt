@@ -1,4 +1,4 @@
-project(PID CXX)
+project(MPC CXX)
 
 cmake_minimum_required (VERSION 3.5)
 
@@ -7,8 +7,9 @@ add_definitions(-std=c++11)
 set(CXX_FLAGS "-Wall")
 set(CMAKE_CXX_FLAGS "${CXX_FLAGS}")
 
-set(sources pid_control/PID.cpp pid_control/main.cpp)
+set(sources src/MPC.cpp src/main.cpp)
 
+include_directories(src/Eigen-3.3)
 include_directories(/usr/local/include)
 link_directories(/usr/local/lib)
 
@@ -21,6 +22,11 @@ link_directories(/usr/local/Cellar/libuv/1*/lib)
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 
 
 
-add_executable(pid ${sources})
+add_executable(mpc ${sources})
 
-target_link_libraries(pid z ssl uv uWS)
+target_link_libraries(mpc z ssl uv uWS)
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+target_link_libraries(mpc ipopt python2.7)
+else()
+target_link_libraries(mpc ipopt python)
+endif()
